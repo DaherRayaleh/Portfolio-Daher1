@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #7cf03d;
+  --background-color: #1f242d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: #fff;
+}
+
+.navbar {
+  @apply fixed left-0 top-0 w-full px-[9%] py-6 flex justify-between items-center z-50;
+  animation: show-content 1.5s linear forwards;
+  animation-delay: 1.2s;
+}
+
+.navbar .logo {
+  @apply text-3xl font-bold text-white;
+}
+
+.navbar ul {
+  @apply flex gap-8;
+}
+
+.navbar ul li {
+  @apply list-none;
+}
+
+.navbar ul li a {
+  @apply text-xl font-medium transition-colors duration-500;
+}
+
+.navbar ul li:hover a,
+.navbar ul li.active a {
+  color: var(--primary-color);
+}
+
+.home-section {
+  @apply flex items-center gap-12 min-h-screen px-[9%] pt-16;
+  animation: show-content 1.5s linear forwards;
+  animation-delay: 1.6s;
+}
+
+.typing-text span {
+  @apply relative inline-block text-transparent;
+  -webkit-text-stroke: 0.7px var(--primary-color);
+  animation: display-text 16s linear infinite;
+}
+
+.typing-text span::before {
+  content: attr(data-text);
+  @apply absolute w-0 border-r-2 border-[var(--primary-color)] text-[var(--primary-color)] whitespace-nowrap overflow-hidden;
+  animation: fill-text 4s linear infinite;
+}
+
+.btn {
+  @apply inline-block px-8 py-3 bg-[var(--primary-color)] border-2 border-[var(--primary-color)] rounded-full text-[var(--background-color)] font-semibold transition-all duration-500;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+.btn:hover {
+  @apply bg-transparent text-[var(--primary-color)];
+  box-shadow: none;
+}
+
+.social-icons a {
+  @apply inline-flex p-2 border-2 border-[var(--primary-color)] rounded-full text-[var(--primary-color)] mx-2 transition-all duration-500;
+}
+
+.social-icons a:hover {
+  @apply bg-[var(--primary-color)] text-[var(--background-color)];
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+@keyframes show-content {
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes display-text {
+  25%,100% {
+    display: none;
+  }
+}
+
+@keyframes fill-text {
+  10%, 100% { width: 0; }
+  70%, 90% { width: 100%; }
+}
+
+.profile-image {
+  @apply relative w-[32vw] h-[32vw] rounded-full p-1 flex justify-center items-center overflow-hidden;
+}
+
+.profile-image::before,
+.profile-image::after {
+  content: '';
+  @apply absolute w-[500px] h-[500px];
+  background: conic-gradient(transparent, transparent, transparent, var(--primary-color));
+  animation: rotate-border 10s linear infinite;
+}
+
+.profile-image::after {
+  animation-delay: -5s;
+}
+
+@keyframes rotate-border {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.certification-card {
+  @apply bg-white/10 rounded-lg p-6 backdrop-blur-sm transition-transform duration-300 hover:transform hover:scale-105;
+}
+
+.project-card {
+  @apply bg-white/10 rounded-lg p-6 backdrop-blur-sm transition-all duration-300 hover:transform hover:scale-105;
+}
